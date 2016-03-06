@@ -84,6 +84,63 @@ const styles = StyleSheet.create({
 });
 
 export default class GiftedMessenger extends Component {
+    static propTypes = {
+        displayNames: React.PropTypes.bool,
+        placeholder: React.PropTypes.string,
+        styles: React.PropTypes.object,
+        autoFocus: React.PropTypes.bool,
+        onErrorButtonPress: React.PropTypes.func,
+        loadEarlierMessagesButton: React.PropTypes.bool,
+        loadEarlierMessagesButtonText: React.PropTypes.string,
+        onLoadEarlierMessages: React.PropTypes.func,
+        parseText: React.PropTypes.bool,
+        handleUrlPress: React.PropTypes.func,
+        handlePhonePress: React.PropTypes.func,
+        handleEmailPress: React.PropTypes.func,
+        initialMessages: React.PropTypes.array,
+        messages: React.PropTypes.array,
+        handleSend: React.PropTypes.func,
+        onCustomSend: React.PropTypes.func,
+        renderCustomText: React.PropTypes.func,
+        maxHeight: React.PropTypes.number,
+        senderName: React.PropTypes.string,
+        senderImage: React.PropTypes.object,
+        sendButtonText: React.PropTypes.string,
+        onImagePress: React.PropTypes.func,
+        onMessageLongPress: React.PropTypes.func,
+        hideTextInput: React.PropTypes.bool,
+        forceRenderImage: React.PropTypes.bool,
+        onChangeText: React.PropTypes.func
+    };
+
+    static defaultProps = {
+        displayNames: true,
+        placeholder: 'Type a message...',
+        styles: {},
+        autoFocus: true,
+        onErrorButtonPress: (message, rowID) => {},
+        loadEarlierMessagesButton: false,
+        loadEarlierMessagesButtonText: 'Load earlier messages',
+        onLoadEarlierMessages: (oldestMessage, callback) => {},
+        parseText: false,
+        handleUrlPress: (url) => {},
+        handlePhonePress: (phone) => {},
+        handleEmailPress: (email) => {},
+        initialMessages: [],
+        messages: [],
+        handleSend: (message, rowID) => {},
+        maxHeight: Dimensions.get('window').height,
+        senderName: 'Sender',
+        senderImage: null,
+        sendButtonText: 'Send',
+        onImagePress: null,
+        onMessageLongPress: null,
+        hideTextInput: false,
+        submitOnReturn: false,
+        forceRenderImage: false,
+        onChangeText: (text) => {}
+    };
+
     constructor(props) {
         super(props);
 
@@ -506,60 +563,3 @@ export default class GiftedMessenger extends Component {
         return null;
     }
 }
-
-GiftedMessenger.propTypes = {
-    displayNames: React.PropTypes.bool,
-    placeholder: React.PropTypes.string,
-    styles: React.PropTypes.object,
-    autoFocus: React.PropTypes.bool,
-    onErrorButtonPress: React.PropTypes.func,
-    loadEarlierMessagesButton: React.PropTypes.bool,
-    loadEarlierMessagesButtonText: React.PropTypes.string,
-    onLoadEarlierMessages: React.PropTypes.func,
-    parseText: React.PropTypes.bool,
-    handleUrlPress: React.PropTypes.func,
-    handlePhonePress: React.PropTypes.func,
-    handleEmailPress: React.PropTypes.func,
-    initialMessages: React.PropTypes.array,
-    messages: React.PropTypes.array,
-    handleSend: React.PropTypes.func,
-    onCustomSend: React.PropTypes.func,
-    renderCustomText: React.PropTypes.func,
-    maxHeight: React.PropTypes.number,
-    senderName: React.PropTypes.string,
-    senderImage: React.PropTypes.object,
-    sendButtonText: React.PropTypes.string,
-    onImagePress: React.PropTypes.func,
-    onMessageLongPress: React.PropTypes.func,
-    hideTextInput: React.PropTypes.bool,
-    forceRenderImage: React.PropTypes.bool,
-    onChangeText: React.PropTypes.func
-};
-
-GiftedMessenger.defaultProps = {
-    displayNames: true,
-    placeholder: 'Type a message...',
-    styles: {},
-    autoFocus: true,
-    onErrorButtonPress: (message, rowID) => {},
-    loadEarlierMessagesButton: false,
-    loadEarlierMessagesButtonText: 'Load earlier messages',
-    onLoadEarlierMessages: (oldestMessage, callback) => {},
-    parseText: false,
-    handleUrlPress: (url) => {},
-    handlePhonePress: (phone) => {},
-    handleEmailPress: (email) => {},
-    initialMessages: [],
-    messages: [],
-    handleSend: (message, rowID) => {},
-    maxHeight: Dimensions.get('window').height,
-    senderName: 'Sender',
-    senderImage: null,
-    sendButtonText: 'Send',
-    onImagePress: null,
-    onMessageLongPress: null,
-    hideTextInput: false,
-    submitOnReturn: false,
-    forceRenderImage: false,
-    onChangeText: (text) => {}
-};

@@ -38,6 +38,13 @@ let styles = StyleSheet.create({
 });
 
 export default class Bubble extends React.Component {
+    static propTypes = {
+        position: React.PropTypes.oneOf(['left', 'right']),
+        status: React.PropTypes.string,
+        text: React.PropTypes.string,
+        renderCustomText: React.PropTypes.func
+    };
+
     constructor(props) {
         super(props);
     }
@@ -74,10 +81,3 @@ export default class Bubble extends React.Component {
         )
     }
 }
-
-Bubble.propTypes = {
-    position: React.PropTypes.oneOf(['left', 'right']),
-    status: React.PropTypes.string,
-    text: React.PropTypes.string,
-    renderCustomText: React.PropTypes.func
-};

@@ -27,6 +27,13 @@ let styles = StyleSheet.create({
 });
 
 export default class ErrorButton extends React.Component {
+    static defaultProps = {
+        onErrorButtonPress: () => {},
+        rowData: {},
+        rowID: null,
+        styles: {}
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -66,10 +73,3 @@ export default class ErrorButton extends React.Component {
         );
     }
 }
-
-ErrorButton.defaultProps = {
-    onErrorButtonPress: () => {},
-    rowData: {},
-    rowID: null,
-    styles: {}
-};
