@@ -197,6 +197,7 @@ export default class GiftedMessenger extends Component {
                     position={rowData.position}
                     forceRenderImage={this.props.forceRenderImage}
                     onImagePress={this.props.onImagePress}
+                    onMessageLongPress={this.props.onMessageLongPress}
                     renderCustomText={this.props.renderCustomText}
                     styles={styles}/>
             </View>
@@ -529,6 +530,7 @@ GiftedMessenger.propTypes = {
     senderImage: React.PropTypes.object,
     sendButtonText: React.PropTypes.string,
     onImagePress: React.PropTypes.func,
+    onMessageLongPress: React.PropTypes.func,
     hideTextInput: React.PropTypes.bool,
     forceRenderImage: React.PropTypes.bool,
     onChangeText: React.PropTypes.func
@@ -555,6 +557,7 @@ GiftedMessenger.defaultProps = {
     senderImage: null,
     sendButtonText: 'Send',
     onImagePress: null,
+    onMessageLongPress: null,
     hideTextInput: false,
     submitOnReturn: false,
     forceRenderImage: false,
