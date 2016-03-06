@@ -490,6 +490,7 @@ export default class GiftedMessenger extends Component {
                         autoFocus={this.props.autoFocus}
                         returnKeyType={this.props.submitOnReturn ? 'send' : 'default'}
                         onSubmitEditing={this.props.submitOnReturn ? this.onSend.bind(this) : null}
+                        enablesReturnKeyAutomatically={true}
                         blurOnSubmit={false}/>
                     <Button
                         style={[styles.sendButton, this.props.styles.sendButton]}
