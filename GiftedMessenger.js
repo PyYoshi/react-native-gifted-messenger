@@ -291,7 +291,7 @@ export default class GiftedMessenger extends Component {
         if (this.props.onCustomSend) {
             this.props.onCustomSend(message);
         } else {
-            let rowID = this.appendMessage(message);
+            let rowID = this.appendMessage(message, true);
             this.props.handleSend(message, rowID);
             this.onChangeText('');
         }
