@@ -77,8 +77,7 @@ export default class Message extends React.Component {
                     return (
                         <TouchableHighlight
                             underlayColor='transparent'
-                            onPress={() => onImagePress(rowData, rowID)}
-                            style={styles.imagePosition}>
+                            onPress={() => onImagePress(rowData, rowID)}>
                             <Image source={rowData.image}
                                 style={[
                                 styles.imagePosition,
