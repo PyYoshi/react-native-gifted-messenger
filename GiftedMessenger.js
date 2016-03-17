@@ -161,7 +161,7 @@ export default class GiftedMessenger extends Component {
 
         let textInputHeight = 0;
         if (this.props.hideTextInput === false) {
-            textInputHeight = 44;
+            textInputHeight = this.props.style.textInputContainer.height || 44;
         }
 
         let listViewMaxHeight = this.props.maxHeight - textInputHeight;
@@ -195,13 +195,14 @@ export default class GiftedMessenger extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        let textInputHeight = this.props.style.textInputContainer.height || 44;
         if (nextProps.hideTextInput && !this.props.hideTextInput) {
-            this.listViewMaxHeight += 44;
+            this.listViewMaxHeight += textInputHeight;
             this.setState({
                 height: new Animated.Value(this.listViewMaxHeight)
             });
         } else if (!nextProps.hideTextInput && this.props.hideTextInput) {
-            this.listViewMaxHeight -= 44;
+            this.listViewMaxHeight -= textInputHeight;
         }
 
         this.setState({
