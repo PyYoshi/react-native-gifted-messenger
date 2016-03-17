@@ -110,7 +110,8 @@ export default class GiftedMessenger extends Component {
         onMessageLongPress: React.PropTypes.func,
         hideTextInput: React.PropTypes.bool,
         forceRenderImage: React.PropTypes.bool,
-        onChangeText: React.PropTypes.func
+        onChangeText: React.PropTypes.func,
+        autoScroll: React.PropTypes.bool
     };
 
     static defaultProps = {
@@ -118,17 +119,23 @@ export default class GiftedMessenger extends Component {
         placeholder: 'Type a message...',
         styles: {},
         autoFocus: true,
-        onErrorButtonPress: (message, rowID) => {},
+        onErrorButtonPress: (message, rowID) => {
+        },
         loadEarlierMessagesButton: false,
         loadEarlierMessagesButtonText: 'Load earlier messages',
-        onLoadEarlierMessages: (oldestMessage, callback) => {},
+        onLoadEarlierMessages: (oldestMessage, callback) => {
+        },
         parseText: false,
-        handleUrlPress: (url) => {},
-        handlePhonePress: (phone) => {},
-        handleEmailPress: (email) => {},
+        handleUrlPress: (url) => {
+        },
+        handlePhonePress: (phone) => {
+        },
+        handleEmailPress: (email) => {
+        },
         initialMessages: [],
         messages: [],
-        handleSend: (message, rowID) => {},
+        handleSend: (message, rowID) => {
+        },
         maxHeight: Dimensions.get('window').height,
         senderName: 'Sender',
         senderImage: null,
@@ -138,7 +145,9 @@ export default class GiftedMessenger extends Component {
         hideTextInput: false,
         submitOnReturn: false,
         forceRenderImage: false,
-        onChangeText: (text) => {}
+        onChangeText: (text) => {
+        },
+        autoScroll: false
     };
 
     constructor(props) {
@@ -173,7 +182,7 @@ export default class GiftedMessenger extends Component {
             allLoaded: false,
             appearAnim: new Animated.Value(0)
         };
-        
+
         this._data = [];
         this._rowIds = [];
         this.listViewMaxHeight = listViewMaxHeight;
@@ -182,6 +191,9 @@ export default class GiftedMessenger extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.hideTextInput && !this.props.hideTextInput) {
             this.listViewMaxHeight += 44;
+            this.setState({
+                height: new Animated.Value(this.listViewMaxHeight)
+            });
         } else if (!nextProps.hideTextInput && this.props.hideTextInput) {
             this.listViewMaxHeight -= 44;
         }
@@ -318,14 +330,14 @@ export default class GiftedMessenger extends Component {
     }
 
     onKeyboardDidShow(e) {
-        if(Platform.OS == 'android') {
+        if (Platform.OS == 'android') {
             this.onKeyboardWillShow(e);
         }
         this.scrollToBottom();
     }
 
     onKeyboardDidHide(e) {
-        if(Platform.OS == 'android') {
+        if (Platform.OS == 'android') {
             this.onKeyboardWillHide(e);
         }
     }
@@ -486,10 +498,10 @@ export default class GiftedMessenger extends Component {
             listHeight: layout.height
         });
         if (this.state.firstDisplay === true) {
-            requestAnimationFrame(()=>{
+            requestAnimationFrame(()=> {
                 this.setState({
                     firstDisplay: false
-                }, function() {
+                }, function () {
                     this.scrollWithoutAnimationToBottom();
                 });
             });
@@ -498,10 +510,15 @@ export default class GiftedMessenger extends Component {
 
     listViewRenderFooter() {
         return (
-            <View onLayout={(event)=>{
-                let layout = event.nativeEvent.layout;
-                this.setState({footerY: layout.y});
-                }}/>
+            <View onLayout={
+                    (event) => {
+                        let layout = event.nativeEvent.layout;
+                        this.setState({footerY: layout.y});
+                        if (this.props.autoScroll) {
+                            this.scrollToBottom();
+                        }
+                    }
+                }/>
         );
     }
 
