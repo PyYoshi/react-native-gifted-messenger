@@ -179,6 +179,18 @@ export default class GiftedMessenger extends Component {
         this.listViewMaxHeight = listViewMaxHeight;
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.hideTextInput && !this.props.hideTextInput) {
+            this.listViewMaxHeight += 44;
+        } else if (!nextProps.hideTextInput && this.props.hideTextInput) {
+            this.listViewMaxHeight -= 44;
+        }
+
+        this.setState({
+            height: new Animated.Value(this.listViewMaxHeight)
+        });
+    }
+
     getMessage(rowID) {
         if (typeof this._rowIds[this._rowIds.indexOf(rowID)] !== 'undefined') {
             if (typeof this._data[this._rowIds[this._rowIds.indexOf(rowID)]] !== 'undefined') {
