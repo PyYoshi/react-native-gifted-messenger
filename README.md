@@ -3,20 +3,8 @@ Ready-to-use chat interface for iOS and Android React-Native apps
 
 Dependency: React-Native >= v0.20.0 (scrollTo is now using {x, y, animated})
 
-
 ![](https://raw.githubusercontent.com/FaridSafi/react-native-gifted-messenger/master/screenshots/messenger-1.png)
 ![](https://raw.githubusercontent.com/FaridSafi/react-native-gifted-messenger/master/screenshots/messenger-2.png)
-
-
-### Changelog
-#### 0.0.24
-- Fix textInputContainer issue #83
-#### 0.0.23
-- Scroll to bottom after onSend, Add enablesReturnKeyAutomatically setting to end on return key (PR @alizbazar)
-- New prop onMessageLongPress (PR @corymsmith)
-- displayNamesInsideBubble and keyboardShouldPersistTaps props (PR @koppelaar)
-- Expose full rowData to renderCustomText and add dynamic hide/show text input (PR @bpeters)
-
 
 ### Example
 
