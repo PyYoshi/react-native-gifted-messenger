@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
 export default class GiftedMessenger extends Component {
     static propTypes = {
         displayNames: React.PropTypes.bool,
+        displayNamesInsideBubble: React.PropTypes.bool,
         placeholder: React.PropTypes.string,
         styles: React.PropTypes.object,
         autoFocus: React.PropTypes.bool,
@@ -116,6 +117,7 @@ export default class GiftedMessenger extends Component {
 
     static defaultProps = {
         displayNames: true,
+        displayNamesInsideBubble: false,
         placeholder: 'Type a message...',
         styles: {},
         autoFocus: true,
@@ -274,6 +276,7 @@ export default class GiftedMessenger extends Component {
                     rowID={rowID}
                     onErrorButtonPress={this.props.onErrorButtonPress}
                     displayNames={this.props.displayNames}
+                    displayNamesInsideBubble={this.props.displayNamesInsideBubble}
                     diffMessage={diffMessage}
                     position={rowData.position}
                     forceRenderImage={this.props.forceRenderImage}

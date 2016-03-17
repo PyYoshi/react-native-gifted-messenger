@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
         marginLeft: 55,
         marginBottom: 5
     },
+    nameInsideBubble: {
+        color: '#666666',
+        marginLeft: 0
+    },
     imagePosition: {
         height: 30,
         width: 30,
@@ -59,7 +63,7 @@ export default class Message extends React.Component {
         if (displayNames === true) {
             if (diffMessage === null || name !== diffMessage.name) {
                 return (
-                    <Text style={[styles.name]}>{name}</Text>
+                    <Text style={[styles.name, this.props.displayNamesInsideBubble ? styles.nameInsideBubble : null]}>{name}</Text>
                 );
             }
         }
@@ -154,14 +158,15 @@ export default class Message extends React.Component {
 
         let messageView = (
             <View>
-                {position === 'left' ? this.renderName(rowData.name, displayNames, diffMessage) : null}
+                {position === 'left' && !this.props.displayNamesInsideBubble ? this.renderName(rowData.name, displayNames, diffMessage) : null}
                 <View style={[styles.rowContainer, {justifyContent: position==='left' ? "flex-start" : "flex-end"}]}>
                     {position === 'left' ? this.renderImage(rowData, rowID, diffMessage, forceRenderImage, onImagePress) : null}
                     {position === 'right' ? this.renderErrorButton(rowData, rowID, onErrorButtonPress) : null}
                     <RowView
                         {...rowData}
                         renderCustomText={this.props.renderCustomText}
-                        styles={styles}/>
+                        styles={styles}
+                        name={position === 'left' && this.props.displayNamesInsideBubble ? this.renderName(rowData.name, displayNames, diffMessage) : null} />
                     {rowData.position === 'right' ? this.renderImage(rowData, rowID, diffMessage, forceRenderImage, onImagePress) : null}
                 </View>
                 {rowData.position === 'right' ? this.renderStatus(rowData.status) : null}
