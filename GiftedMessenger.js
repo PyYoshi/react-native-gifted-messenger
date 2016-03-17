@@ -159,9 +159,11 @@ export default class GiftedMessenger extends Component {
     constructor(props) {
         super(props);
 
-        let textInputHeight = 0;
+        let textInputHeight = 44;
         if (this.props.hideTextInput === false) {
-            textInputHeight = this.props.style.textInputContainer.height || 44;
+            if (this.props.styles.hasOwnProperty('textInputContainer')) {
+                textInputHeight = this.props.styles.textInputContainer.height || textInputHeight;
+            }
         }
 
         let listViewMaxHeight = this.props.maxHeight - textInputHeight;
@@ -195,7 +197,11 @@ export default class GiftedMessenger extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let textInputHeight = nextProps.style.textInputContainer.height || 44;
+        let textInputHeight = 44;
+
+        if (nextProps.styles.hasOwnProperty('textInputContainer')) {
+            textInputHeight = nextProps.styles.textInputContainer.height || textInputHeight;
+        }
 
         if (nextProps.maxHeight !== this.props.maxHeight) {
             this.listViewMaxHeight = nextProps.maxHeight;
