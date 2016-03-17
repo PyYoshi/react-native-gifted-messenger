@@ -110,6 +110,8 @@ export default class GiftedMessenger extends Component {
         onImagePress: React.PropTypes.func,
         onMessageLongPress: React.PropTypes.func,
         hideTextInput: React.PropTypes.bool,
+        keyboardDismissMode: React.PropTypes.string,
+        keyboardShouldPersistTaps: React.PropTypes.bool,
         forceRenderImage: React.PropTypes.bool,
         onChangeText: React.PropTypes.func,
         autoScroll: React.PropTypes.bool
@@ -145,6 +147,8 @@ export default class GiftedMessenger extends Component {
         onImagePress: null,
         onMessageLongPress: null,
         hideTextInput: false,
+        keyboardDismissMode: 'interactive',
+        keyboardShouldPersistTaps: true,
         submitOnReturn: false,
         forceRenderImage: false,
         onChangeText: (text) => {
@@ -543,12 +547,9 @@ export default class GiftedMessenger extends Component {
                     onKeyboardWillHide={this.onKeyboardWillHide.bind(this)}
                     onKeyboardDidHide={this.onKeyboardDidHide.bind(this)}
 
-                    /*
-                      keyboardShouldPersistTaps={false} // @issue keyboardShouldPersistTaps={false} + textInput focused = 2 taps are needed to trigger the ParsedText links
-                      keyboardDismissMode='interactive'
-                    */
-                    keyboardShouldPersistTaps={true}
-                    keyboardDismissMode='interactive'
+                    // @issue keyboardShouldPersistTaps={false} + textInput focused = 2 taps are needed to trigger the ParsedText links
+                    keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
+                    keyboardDismissMode={this.props.keyboardDismissMode}
 
                     initialListSize={10}
                     pageSize={this.props.messages.length}
