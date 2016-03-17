@@ -359,6 +359,7 @@ export default class GiftedMessenger extends Component {
         if (Platform.OS == 'android') {
             this.onKeyboardWillHide(e);
         }
+        this.scrollToBottom();
     }
 
     scrollToBottom() {
