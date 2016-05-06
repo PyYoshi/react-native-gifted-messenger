@@ -29,8 +29,7 @@
   ],
   "homepage": "https://github.com/FaridSafi/react-native-gifted-messenger#readme",
   "dependencies": {
-    "moment": "^2.11.2",
-    "react-native-button": "^1.4.2",
-    "react-native-gifted-spinner": "0.0.3"
+    "moment": "^2.13.0",
+    "react-native-button": "^1.4.2"
   }
 }
