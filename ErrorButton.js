@@ -1,10 +1,11 @@
-import React, {
+import React from 'react';
+import {
     View,
     Text,
     TouchableHighlight,
     StyleSheet
 } from 'react-native';
-import GiftedSpinner from 'react-native-gifted-spinner';
+import GiftedSpinner from './GiftedSpinner';
 
 let styles = StyleSheet.create({
     errorButtonContainer: {

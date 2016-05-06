@@ -1,5 +1,5 @@
-import React, {
-    Component,
+import React, {Component} from 'react';
+import {
     Text,
     View,
     ListView,
@@ -10,7 +10,7 @@ import React, {
     PixelRatio,
     StyleSheet
 } from 'react-native';
-import GiftedSpinner from 'react-native-gifted-spinner';
+import GiftedSpinner from './GiftedSpinner';
 import moment from 'moment';
 import Button from 'react-native-button';
 
