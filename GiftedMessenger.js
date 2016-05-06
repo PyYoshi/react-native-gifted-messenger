@@ -550,6 +550,7 @@ export default class GiftedMessenger extends Component {
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}
                     renderHeader={this.renderLoadEarlierMessages.bind(this)}
+                    enableEmptySections={true}
                     onLayout={this.listViewOnLayout.bind(this)}
                     renderFooter={this.listViewRenderFooter.bind(this)}
                     style={[styles.listView, this.props.styles.listView]}
