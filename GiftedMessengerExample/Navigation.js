@@ -4,14 +4,15 @@ var React = require('react-native');
 var {
   Text,
   Navigator,
-  Platform
+  Platform,
+  StyleSheet
 } = React;
 
 var Navigation = React.createClass({
   render() {
     return (
       <Navigator
-        initialRoute={{index: 0, title: 'Gifted Messenger'}}
+        initialRoute={{id: 'conversations', title: 'Gifted Messenger'}}
         renderScene={this.renderScene}
         configureScene={(route) => {
           if (route.sceneConfig) {
@@ -30,32 +31,55 @@ var Navigation = React.createClass({
     var _self = this;    
     var routeMapper = {
       LeftButton(route, navigator, index, navState) {
-        return null;
+        return <Text>Back</Text>;
       },
       RightButton(route, navigator, index, navState) {
-        return null;
+        return <Text>Forward</Text>;
       },
       Title(route, navigator, index, navState) {
-        return null;
+        return <Text>My title</Text>;
       }
     };
     return (
       <Navigator.NavigationBar
-        style={{
-          backgroundColor: '#007aff',
-          alignItems: 'center',        
-        }}
+        style={styles.navStyle}
         routeMapper={routeMapper}
       />
     );
   },
   renderScene(route, navigator) {
     var GiftedMessengerExample = require('./GiftedMessengerExample');
-    return (
-      <GiftedMessengerExample />
-    );
+    var Conversations = require('./Conversations');
+    
+    console.log(route);
+    switch (route.id) {
+        case 'chat':
+            return (
+            <GiftedMessengerExample />
+            );
+            break;
+    
+        case 'conversations':
+            return (
+            <Conversations navigator={navigator} />
+            );
+            break;
+            
+        default:
+            return (
+            <Text>Error</Text>            
+            );
+            break;
+    }
+
   },
 });
 
+const styles = StyleSheet.create({
+    navStyle: {
+        backgroundColor: '#007aff',
+        alignItems: 'center',        
+    }
+});
 
 module.exports = Navigation;
